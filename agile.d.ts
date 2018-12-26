@@ -15,11 +15,14 @@ declare namespace agile {
         type: BoardType
     }
 
-    export interface IBoardList {
+    export interface IListOutput {
         maxResults: number,
         startAt?: number,
         total?: number,
         isLast?: boolean,
+    }
+
+    export interface IBoardList extends IListOutput {
         values: IBoard[];
     }
 
@@ -35,18 +38,31 @@ declare namespace agile {
 
     }
 
-    export interface IIssue {
-        expand?: string,
-        total: number,
-        self: string,
-        key: string,
-        fields: ISprint[],
-        project: any,
+    export interface IIssueFields {
+        flagged?: string,
+        sprint?: ISprint,
+        closedSprints?: ISprint[],
+        description: string,
+        project?: jira.IProjectPartial,
         comment: any[],
         epic: any,
         worklog: any[],
         updated?: number,
         timetracking?: any
+    }
+
+    export interface IIssue {
+        expand?: string,
+        id: string,
+        total?: number,
+        self: string,
+        key: string,
+        fields: IIssueFields,
+    }
+
+    export interface IBacklogList extends IListOutput {
+        expand?: string,
+        issues: IIssue[]
     }
 
 }
