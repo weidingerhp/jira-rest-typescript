@@ -2,7 +2,7 @@
 // see https://developer.atlassian.com/cloud/jira/software/rest/ for details
 //
 
-declare namespace greenhopper {
+declare namespace agile {
     export enum BoardType {
         SCRUM = 'scrum',
         KANBAN = 'kanban'
