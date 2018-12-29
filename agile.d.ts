@@ -38,17 +38,51 @@ declare namespace agile {
 
     }
 
+    export interface IWorklog {
+        author: any,
+        comment: any,
+        id?: string,
+        issueId: string,
+        self: string,
+        started?: Date,
+        timeSpent?: string,
+        timeSpentSeconds?: number,
+        updateAuthor: any,
+        updated: Date,
+        visibility: any        
+    }
+
+    export interface ITimeTracking {
+        originalEstimate: string,
+        originalEstimateSeconds: number,
+        remainingEstimate: string,
+        remainingEstimateSeconds: number
+    }
+
+    export interface IIssueType {
+        id: string,
+        self: string,
+        description: string,
+        iconUrl: string,
+        name: string,
+        subtask?: boolean,
+        avatarId?: number
+    }
+
     export interface IIssueFields {
+        issuetype?: IIssueType,
         flagged?: string,
         sprint?: ISprint,
+        status?: any,
         closedSprints?: ISprint[],
         description: string,
+        summary: string,
         project?: jira.IProjectPartial,
         comment: any[],
         epic: any,
-        worklog: any[],
+        worklog: IWorklog[],
         updated?: number,
-        timetracking?: any
+        timetracking?: ITimeTracking
     }
 
     export interface IIssue {
@@ -60,9 +94,13 @@ declare namespace agile {
         fields: IIssueFields,
     }
 
-    export interface IBacklogList extends IListOutput {
+    export interface IIssueList extends IListOutput {
         expand?: string,
         issues: IIssue[]
+    }
+
+    export interface ISprintList extends IListOutput {
+        values: ISprint[]
     }
 
 }
