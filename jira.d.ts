@@ -199,4 +199,23 @@ declare namespace jira {
             //TODO: add custom fields
         };
     }
+
+    export interface IWorklog {
+        author?: IUser;
+        updateAuthor?: IUser;
+        comment?: string;
+        created?: string;
+        updated?: string;
+        visibility?: IVisibility;
+        started?: string;
+        timeSpent?: string;
+        timeSpentSeconds?: number;
+        id?: string;
+        issueId?: string;
+    }
+
+    export interface IVisibility {
+        type?: ("group" | "role");
+        value?: string;
+    }
 }
